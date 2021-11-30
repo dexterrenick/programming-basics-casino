@@ -9,9 +9,124 @@
   display: flex;
   justify-content: space-between;
   border-radius: 25px;
-  border: 2px solid #73AD21;
+  border: 3px solid #9a6d5b;
   padding: 20px;
   width: 100px;
-  height: 60px;
+  height: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #d8a578;
+  font-weight: bold;
+  padding-left: 60px;
+  opacity: .6;
+}
+
+.game-body {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 25px;
+  border: 3px solid #607d88;
+  padding: 70px;
+  width: 800px;
+  height: 540px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #799e9c;
+  font-weight: bold;
+}
+
+.game {
+  position: absolute;
+}
+
+.chips {
+  /* position: absolute; */
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 480px;
+}
+
+.chip {
+  width: 90px;
+  margin-top: -40px;
+}
+
+.chip:hover {
+  opacity: .7;
+}
+
+.clear-bet {
   text-align: center;
+  height: 70px;
+  width: 70px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin-top: -30px;
+  line-height: 60px;
+}
+
+.action-buttons {
+  position: absolute;
+  width: 800px;
+  display: flex;
+  justify-content: space-evenly;
+  top: 360px;
+}
+
+
+.action-button {
+  text-align: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin-top: -30px;
+  line-height: 60px;
+  border: 3px solid green;
+}
+
+.action-button:hover {
+  background-color: rgb(0,128, 0, .3);
+}
+
+.hand {
+  width: 100%;
+  display: flex;
+  text-align: center;
+  left: 50%;
+}
+
+.hand-war {
+  display: flex;
+  text-align: center;
+  padding: 10px;
+}
+
+.card {
+  width: 100px;
+  padding-right: 40px;
+}
+
+.card-war {
+  width: 100px;
+  padding-left: 340px;
+}
+
+.win-result {
+  position: absolute;
+  top: 450px;
+  font-size: 50px;
+  padding-left: 280px;
+}
+
+.head-number {
+  display:flex;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#userHand {
+  margin-top: 20px;
 }

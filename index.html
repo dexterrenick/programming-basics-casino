@@ -1,18 +1,74 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body style="background-color: #e1d8ac; padding: 0px; margin: 0px;">
+    <script src="./components.js"></script>
+    <div class="game-buttons">
+      <div class="game-button" onclick="showGame('game1')"> Blackjack </div>
+      <div class="game-button" onclick="showGame('game2')"> War </div>
+      <div class="game-button" onclick="showGame('game3')"> Game 3 </div>
+    </div>
+
+    <div class="game-body">
+      <div class="head-number">
+        <div> Balance: </div>
+        <div class="balance"></div>
+      </div>
+      <div class="head-number">
+        <div> Bet: </div>
+        <div class="bet"></div>
+      </div>
+
+      <div class="game" id="game1">
+        <div class="hand" id="dealerHand"></div>
+        <div class="head-number" id="dealerTotal"></div>
+        <div class="hand" id="userHand"></div>
+        <div class="head-number" id="userTotal"></div>
+        <div class="action-buttons">
+          <div class="action-button" id="play-button" onclick="playBlackJack()">PLAY</div>
+          <div class="action-button" id="hit-button" onclick="userHit()">HIT</div>
+          <div class="action-button" id="stay-button" onclick="blackJackDealerPlay()">STAY</div>
+          <div class="action-button" id="user-double" onclick="userDouble()">DOUBLE</div>
+        </div>
+      </div>
 
 
-<head>
-  <link rel="stylesheet" type="text/css" href="style.css">
-</head>
+      <div class="game" id="game2">
+          <div class="hand-war" id="dealerHandWar"></div>
+          <div class="hand-war" id="userHandWar"></div>
+          <div class="action-buttons">
+            <div class="action-button" id="play-war" onclick="playWar()">PLAY</div>
+          </div>
+      </div>
 
-<body style="background-color: #cf9566; padding: 0px; margin: 0px;">
-  <div class="game-buttons">
-    <div class="game-button"> Game 1 </div>
-    <div class="game-button"> Game 2 </div>
-    <div class="game-button"> Game 3 </div>
-  </div>
+      <div class="game" id="game3"> TEST GAME 3</div>
+      <div class="chips">
+          <img class="chip" src="./assets/poker_1chip.png" onclick="updateBet(1)"></img>
+          <img class="chip" src="./assets/poker_5chip.png" onclick="updateBet(5)"></img>
+          <img class="chip" src="./assets/poker_10chip.png" onclick="updateBet(10)"></img>
+          <img class="chip" src="./assets/poker_25chip.png" onclick="updateBet(25)"></img>
+          <img class="chip" src="./assets/poker_50chip.png" onclick="updateBet(50)"></img>
+          <img class="chip" src="./assets/poker_100chip.png" onclick="updateBet(100)"></img>
+          <div class="clear-bet" onclick="updateBet(-currentBet)">CLEAR</div>
+      </div>
+      <div class="win-result"></div>
+    </div>
 
-</body>
-
+    <script>
+      const deck = getDeck();
+      let handInProgress = false;
+      let userTurnNum = 1;
+      let currentBet = 0;
+      let balance = 1000;
+      let dealerCardsBlackJack = []
+      let userCardsBlackJack = []
+      let dealerCardsWar = []
+      let userCardsWar = []
+      initializeGame()
+    </script>
+    <script src="./components.js"></script>
+  </body>
 </html>
