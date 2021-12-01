@@ -1,6 +1,70 @@
 var suits = ["spades", "diamonds", "clubs", "hearts"];
 var values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"];
 
+function toggleMode() {
+  if (!lightMode) {
+    document.querySelector('#moon').setAttribute('style', 'display: inline');
+    document.querySelector('#sun').setAttribute('style', 'display: none');
+    document.body.style = "background-color: #1A3461; padding: 0px; margin: 0px;"
+    document.querySelector('.game-body').classList.add('game-body-dark');
+    let text = document.querySelectorAll('.head-number');
+    for(let item in text) {
+      try {
+        text[item].classList.add('light-text');
+      } catch (e) {
+
+      }
+    }
+
+    let buttons = document.querySelectorAll('.action-button-text')
+    for(let button in buttons) {
+      try {
+        buttons[button].classList.add('light-text');
+      } catch (e) {
+      }
+    }
+
+    let winResults = document.querySelectorAll('.win-result')
+    console.log(winResults)
+    for(let result in winResults) {
+      try {
+        winResults[result].classList.add('light-text');
+      } catch (e) {
+      }
+    }
+    lightMode = true;
+  } else {
+    document.querySelector('#moon').setAttribute('style', 'display: none');
+    document.querySelector('#sun').setAttribute('style', 'display: inline');
+    document.body.style = "background-color: #e1d8ac; padding: 0px; margin: 0px;"
+    document.querySelector('.game-body').classList.remove('game-body-dark');
+    let text = document.querySelectorAll('.head-number');
+    for(let item in text) {
+      try {
+        text[item].classList.remove('light-text');
+      } catch (e) {
+
+      }
+    }
+
+    let buttons = document.querySelectorAll('.action-button-text')
+    for(let button in buttons) {
+      try {
+        buttons[button].classList.remove('light-text');
+      } catch (e) {
+      }
+    }
+    let winResults = document.querySelectorAll('.win-result')
+    for(let result in winResults) {
+      try {
+        winResults[result].classList.remove('light-text');
+      } catch (e) {
+      }
+    }
+    lightMode = false;
+  }
+}
+
 function showGame(displayGame) {
   if (handInProgress) {
   } else {
@@ -30,6 +94,7 @@ function initializeGame() {
   setBalance(balance)
   clearBoard();
   document.querySelector('#userTotal').innerHTML = "";
+  toggleMode()
 }
 
 function clearCards() {
@@ -125,7 +190,11 @@ function displayCards(showDealerHand) {
   }
 
   if (getMin(getUserTotal()) != getMax(getUserTotal()) && getMax(getUserTotal()) <= 21) {
-    document.querySelector('#userTotal').innerHTML = (`Total: ${getMin(getUserTotal())}/${getMax(getUserTotal())}`)
+    if (getMax(getUserTotal()) > 21) {
+      document.querySelector('#userTotal').innerHTML = (`Total: ${getMin(getUserTotal())}`)
+    } else {
+      document.querySelector('#userTotal').innerHTML = (`Total: ${getMin(getUserTotal())}/${getMax(getUserTotal())}`)
+    }
   } else {
     document.querySelector('#userTotal').innerHTML = (`Total: ${getMin(getUserTotal())}`)
   }
@@ -134,9 +203,7 @@ function displayCards(showDealerHand) {
     document.querySelector('#play-button').setAttribute('style', 'display: none;');
     document.querySelector('#hit-button').setAttribute('style', 'display: flex;');
     document.querySelector('#stay-button').setAttribute('style', 'display: flex;');
-    console.log(userTurnNum);
     if (userTurnNum < 2) {
-      console.log("showing double!")
       document.querySelector('#user-double').setAttribute('style', 'display: flex;');
     } else {
       document.querySelector('#user-double').setAttribute('style', 'display: none;');
@@ -249,6 +316,7 @@ function blackJackDealerPlay() {
   displayCards(true);
   if (handInProgress) {
     while (getDealerTotal() < 17 && getDealerTotal() <= 21) {
+      sleep(500);
       dealerCardsBlackJack.push(getCard());
       if (getMin(getDealerTotal()) != getMax(getDealerTotal()) && getMax(getDealerTotal()) <= 21) {
         document.querySelector('#dealerTotal').innerHTML = (`Total: ${getMin(getDealerTotal())}/${getMax(getDealerTotal())}`)
@@ -266,6 +334,10 @@ function handleWinner() {
   if (getMin(getUserTotal()) > 21) {
     setBalance(balance - currentBet);
     winResult.innerHTML = "YOU LOSE"
+  if (getMax(getDealerTotal() > 21)) {
+    winResult.innerHTML = "YOU WIN"
+    setBalance(balance + currentBet);
+  }
   } else if (getMax(getDealerTotal()) == getMax(getUserTotal())) {
     winResult.innerHTML = "PUSH"
   } else if (getMin(getDealerTotal()) > 21 || getMax(getUserTotal()) > getMax(getDealerTotal())) {
@@ -326,13 +398,11 @@ function playWar() {
   document.querySelector('#play-war').setAttribute('style', 'display: none;')
   dealerCardsWar[0] = (getCard());
   userCardsWar[0] = (getCard());
-  console.log(dealerCardsWar);
 
   let c = document.createElement('img');
   c.src = getCardSource(dealerCardsWar[0].Face, dealerCardsWar[0].Suit)
   c.classList.add('card-war');
   let dealerHand = document.querySelector('#dealerHandWar')
-  console.log(dealerHand);
   dealerHand.append(c)
 
   let c2 = document.createElement('img');
@@ -345,7 +415,6 @@ function playWar() {
 }
 
 function handleWinnerWar() {
-  console.log(`Balance: ${balance} bet: ${currentBet}`);
   document.querySelector('.win-result').setAttribute('style', 'display: block;');
   if (dealerCardsWar[0].value > userCardsWar[0].value) {
     document.querySelector('.win-result').innerHTML = "YOU WIN!"
@@ -356,7 +425,6 @@ function handleWinnerWar() {
   } else {
     document.querySelector('.win-result').innerHTML = "TIE"
   }
-  console.log(`Balance: ${balance} bet: ${currentBet}`);
 }
 
 function clearBoardWar() {

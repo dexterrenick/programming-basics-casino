@@ -5,11 +5,19 @@
   </head>
 
   <body style="background-color: #e1d8ac; padding: 0px; margin: 0px;">
+    <audio controls autoplay>
+      <source src="./assests/music.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+
     <script src="./components.js"></script>
+    <!-- <button class="toggle-theme" onclick="toggleMode()"> -->
+      <img src="./assets/moon.png" id="moon" class="theme-icon" onclick="toggleMode()"></img>
+      <img src="./assets/sun.png" id="sun" class="theme-icon" onclick="toggleMode()"></img>
+    <!-- </button> -->
     <div class="game-buttons">
       <div class="game-button" onclick="showGame('game1')"> Blackjack </div>
       <div class="game-button" onclick="showGame('game2')"> War </div>
-      <div class="game-button" onclick="showGame('game3')"> Game 3 </div>
     </div>
 
     <div class="game-body">
@@ -28,10 +36,26 @@
         <div class="hand" id="userHand"></div>
         <div class="head-number" id="userTotal"></div>
         <div class="action-buttons">
-          <div class="action-button" id="play-button" onclick="playBlackJack()">PLAY</div>
-          <div class="action-button" id="hit-button" onclick="userHit()">HIT</div>
-          <div class="action-button" id="stay-button" onclick="blackJackDealerPlay()">STAY</div>
-          <div class="action-button" id="user-double" onclick="userDouble()">DOUBLE</div>
+          <div class="action-button" id="play-button" onclick="playBlackJack()">
+            <div class="action-button-text">
+              PLAY
+            </div>
+          </div>
+          <div class="action-button" id="hit-button" onclick="userHit()">
+            <div class="action-button-text">
+              HIT
+            </div>
+          </div>
+          <div class="action-button" id="stay-button" onclick="blackJackDealerPlay()">
+            <div class="action-button-text">
+              STAY
+            </div>
+          </div>
+          <div class="action-button" id="user-double" onclick="userDouble()">
+            <div class="action-button-text">
+              DOUBLE
+            </div>
+          </div>
         </div>
       </div>
 
@@ -67,6 +91,7 @@
       let userCardsBlackJack = []
       let dealerCardsWar = []
       let userCardsWar = []
+      let lightMode = true;
       initializeGame()
     </script>
     <script src="./components.js"></script>

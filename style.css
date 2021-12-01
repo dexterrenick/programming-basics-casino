@@ -1,7 +1,20 @@
 .game-buttons {
-  padding: 50px;
+  padding: 50px 200px;
   display: flex;
   justify-content: space-between;
+}
+
+.light-text {
+  color: white;
+  text-shadow: 2px 2px black;
+}
+
+.theme-icon {
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  width: 50px;
+  /* border: 3px solid #9a6d5b; */
 }
 
 .game-button {
@@ -34,6 +47,22 @@
   margin-left: auto;
   margin-right: auto;
   background-color: #799e9c;
+  font-weight: bold;
+}
+
+.game-body-dark {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 25px;
+  border: 3px solid #A5B0C3;
+  padding: 70px;
+  width: 800px;
+  height: 540px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #111927
+;
   font-weight: bold;
 }
 
@@ -85,6 +114,12 @@
   margin-top: -30px;
   line-height: 60px;
   border: 3px solid green;
+}
+
+.action-button-text {
+  width: 100%;
+  justify-content: center;
+  padding-top: 5px;
 }
 
 .action-button:hover {
