@@ -4,22 +4,24 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
 
-  <body style="background-color: #e1d8ac; padding: 0px; margin: 0px;">
+  <body style="background-color: #e1d8ac; padding: 0px; margin: 0px; position: relative; width: 100%; height: 100%;">
+    <!-- Background music player, autoplay only works on certain browsers -->
     <audio controls autoplay>
-      <source src="./assests/music.mp3" type="audio/mp3">
-      Your browser does not support the audio element.
+      <source src="./assets/music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
     </audio>
 
     <script src="./components.js"></script>
-    <!-- <button class="toggle-theme" onclick="toggleMode()"> -->
-      <img src="./assets/moon.png" id="moon" class="theme-icon" onclick="toggleMode()"></img>
-      <img src="./assets/sun.png" id="sun" class="theme-icon" onclick="toggleMode()"></img>
-    <!-- </button> -->
+    <!-- Dark and light mode toggle -->
+    <img src="./assets/moon.png" id="moon" class="theme-icon" onclick="toggleMode()"></img>
+    <img src="./assets/sun.png" id="sun" class="theme-icon" onclick="toggleMode()"></img>
+    <!-- Allows for toggling between games -->
     <div class="game-buttons">
       <div class="game-button" onclick="showGame('game1')"> Blackjack </div>
       <div class="game-button" onclick="showGame('game2')"> War </div>
     </div>
 
+    <!-- Bet and balance are universal between games, so outside of game body -->
     <div class="game-body">
       <div class="head-number">
         <div> Balance: </div>
@@ -30,11 +32,13 @@
         <div class="bet"></div>
       </div>
 
+      <!-- Game 1, blackjack, includes all divs for functionality -->
       <div class="game" id="game1">
         <div class="hand" id="dealerHand"></div>
         <div class="head-number" id="dealerTotal"></div>
         <div class="hand" id="userHand"></div>
         <div class="head-number" id="userTotal"></div>
+        <!-- Unique action buttons to play blackjack -->
         <div class="action-buttons">
           <div class="action-button" id="play-button" onclick="playBlackJack()">
             <div class="action-button-text">
@@ -59,7 +63,7 @@
         </div>
       </div>
 
-
+      <!-- Game 2, war, includes all divs for functionality -->
       <div class="game" id="game2">
           <div class="hand-war" id="dealerHandWar"></div>
           <div class="hand-war" id="userHandWar"></div>
@@ -68,7 +72,7 @@
           </div>
       </div>
 
-      <div class="game" id="game3"> TEST GAME 3</div>
+      <!-- Chips are also universal, so outside of game body -->
       <div class="chips">
           <img class="chip" src="./assets/poker_1chip.png" onclick="updateBet(1)"></img>
           <img class="chip" src="./assets/poker_5chip.png" onclick="updateBet(5)"></img>
@@ -80,7 +84,11 @@
       </div>
       <div class="win-result"></div>
     </div>
-
+    <!-- Splash screen that is shown on initial website load -->
+    <div id="splashscreen" class="splash">
+     <img src="./assets/welcome.png" alt="Welcome Image" class="welcome-image"ismap>
+    </div>
+    <!-- Variables and functions to initialize game functinality -->
     <script>
       const deck = getDeck();
       let handInProgress = false;
@@ -93,6 +101,7 @@
       let userCardsWar = []
       let lightMode = true;
       initializeGame()
+      document.getElementById("splashscreen").addEventListener('click', fadeOutEffect);
     </script>
     <script src="./components.js"></script>
   </body>
