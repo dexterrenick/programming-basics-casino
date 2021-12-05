@@ -417,24 +417,36 @@ function handleWinner() {
   var loseSound = new Audio('./assets/lose.mp3');
   loseSound.loop = false;
   let winResult = document.querySelector('.win-result')
+  let dealerTotal = 0;
+  if (getMax(getDealerTotal()) <= 21) {
+    dealerTotal = getMax(getDealerTotal())
+  } else {
+    dealerTotal = getMin(getDealerTotal())
+  }
   // If statements to handle who won
   if (getMin(getUserTotal()) > 21) {
     setBalance(balance - currentBet);
     winResult.innerHTML = "YOU LOSE"
     loseSound.play();
-  if (getMax(getDealerTotal() > 21)) {
+  }
+  else if (getMin(getDealerTotal()) > 21) {
     winResult.innerHTML = "YOU WIN"
     setBalance(balance + currentBet);
     winSound.play();
   }
-  } else if (getMax(getDealerTotal()) == getMax(getUserTotal())) {
+   else if (getMax(getDealerTotal()) == getMax(getUserTotal())) {
     winResult.innerHTML = "PUSH"
     winSound.play();
-  } else if (getMin(getDealerTotal()) > 21 || getMax(getUserTotal()) > getMax(getDealerTotal())) {
+  } else if (getMax(getUserTotal()) <= 21 && getMax(getUserTotal()) > dealerTotal) {
     winResult.innerHTML = "YOU WIN"
     setBalance(balance + currentBet);
     winSound.play();
-  } else {
+  } else if (getMin(getUserTotal()) <= 21 && getMin(getUserTotal()) > dealerTotal) {
+    winResult.innerHTML = "YOU WIN"
+    setBalance(balance + currentBet);
+    winSound.play();
+  }
+   else {
     setBalance(balance - currentBet);
     winResult.innerHTML = "YOU LOSE"
     loseSound.play();
@@ -528,14 +540,14 @@ function handleWinnerWar() {
   // Conditionals to handle who won and add to their balance
   if (dealerCardsWar[0].value > userCardsWar[0].value) {
     document.querySelector('.win-result').innerHTML = "YOU LOSE"
-    setBalance(balance+currentBet);
+    setBalance(balance-currentBet);
     loseSound.play();
   } else if (dealerCardsWar[0].value < userCardsWar[0].value) {
     document.querySelector('.win-result').innerHTML = "YOU WIN!"
-    setBalance(balance-currentBet);
+    setBalance(balance+currentBet);
     winSound.play();
   } else {
-    document.querySelector('.win-result').innerHTML = "TIE"
+    document.querySelector('.win-result').innerHTML = "PUSH"
     winSound.play();
   }
 }
