@@ -522,13 +522,13 @@ function handleWinnerWar() {
   document.querySelector('.win-result').setAttribute('style', 'display: block;');
   // Conditionals to handle who won and add to their balance
   if (dealerCardsWar[0].value > userCardsWar[0].value) {
-    document.querySelector('.win-result').innerHTML = "YOU WIN!"
-    setBalance(balance+currentBet);
-    winSound.play();
-  } else if (dealerCardsWar[0].value < userCardsWar[0].value) {
     document.querySelector('.win-result').innerHTML = "YOU LOSE"
-    setBalance(balance-currentBet);
+    setBalance(balance+currentBet);
     loseSound.play();
+  } else if (dealerCardsWar[0].value < userCardsWar[0].value) {
+    document.querySelector('.win-result').innerHTML = "YOU WIN!"
+    setBalance(balance-currentBet);
+    winSound.play();
   } else {
     document.querySelector('.win-result').innerHTML = "TIE"
     winSound.play();
