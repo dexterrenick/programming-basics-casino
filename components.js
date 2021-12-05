@@ -378,9 +378,14 @@ function sleep(delay) {
 
 // Dealer play in blackjack where they hit until they have 17, bust, or more than user total
 function blackJackDealerPlay() {
-  // If they don't have 21 and don't have an ace, only show one card
-  if (getMin(getDealerTotal()) != getMax(getDealerTotal()) && getMax(getDealerTotal()) <= 21) {
-    document.querySelector('#dealerTotal').innerHTML = (`Total: ${getMin(getDealerTotal())}/${getMax(getDealerTotal())}`)
+  // If they don't have 21 and have an ace
+  if (getMin(getDealerTotal()) != getMax(getDealerTotal())) {
+    if (getMax(getDealerTotal()) > 21) {
+      document.querySelector('#dealerTotal').innerHTML = (`Total: ${getMin(getDealerTotal())}`);
+    }
+    else {
+      document.querySelector('#dealerTotal').innerHTML = (`Total: ${getMin(getDealerTotal())}/${getMax(getDealerTotal())}`);
+    }
   }
   // If they have an ace show both possible totals
   else {
