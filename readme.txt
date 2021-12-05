@@ -12,6 +12,12 @@ can be played using the player in the top left corner. It does not autoplay due 
 Click on the sun/moon to see dark/light mode. There are also sound effects on hand dealt, bet made,
 win, loss, and push. Have fun!
 
+Files & Directories:
+assets - all images and sound used in the project
+style.css - our styling sheet
+index.html - html for the website, single page, so all html is there
+components.js - all javascript functions 
+readme.txt - explanation of project
 
 Functions:
 toggleMode() - Allows users to toggle between dark and light mode
